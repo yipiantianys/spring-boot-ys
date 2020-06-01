@@ -1,0 +1,41 @@
+server:
+  port: 8080
+spring:
+   datasource:
+      #加载驱动方式
+      #【5.X的驱动加载方式】driver-class-name: com.mysql.jdbc.Driver
+      #【8.0版驱动加载方式】driver-class-name: com.mysql.cj.jdbc.Driver 
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      url: jdbc:mysql://127.0.0.1:3306/test?useUnicode=true&userSSL=false&characterEncoding=UTF-8&autoReconnect=true&serverTimezone=UTC
+      username: root
+      password: root
+    #整合jpa
+   jpa:
+      database: mysql
+      showSql: true
+      hibernate:
+         ddlAuto: update
+      properties:
+         hibernate:
+            dialect: org.hibernate.dialect.MySQL5Dialect
+            format_sql: true
+#    jpa:
+#       properties:
+#          hibernate:
+#             hbm2ddl:
+#                auto: update
+#                dialect: org.hibernate.dialect.MySQL5Dialect
+#          temp:
+#             use_jdbc_metadata_defaults: false
+#       show-sql: true
+mybatis:
+   #config-location默认配置需要classpath:开头，当使用@Configuration注解自定义配置时，路径中不需加classpath:开头;
+   #(1)【默认配置】config-location: classpath:mybatis-config.xml
+   #(2)【@Configuration注解配置】mybatis-config.xml
+   #注解配置位置
+   #   /spring-boot-ys/src/main/java/org/study/config/MybatisTableConfig.java
+   #   /spring-boot-ys/src/main/java/org/study/config/MyBatisMapperScannerConfig.java
+   config-location: mybatis-config.xml
+   mapper-locations: classpath*:mybatis/*.xml
+   #说明：type-aliases-package这个参数名并非默认参数，是自己定义的，仅仅是为了注解自定义配置获取使用，/spring-boot-ys/src/main/java/org/study/config/MybatisTableConfig.java
+   type-aliases-package: org.study.model.*

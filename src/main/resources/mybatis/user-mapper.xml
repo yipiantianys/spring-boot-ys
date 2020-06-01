@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://www.mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.study.mapper.UserMapper">
+  <select id="getUser" parameterType="java.lang.Integer" resultType="org.study.model.SysUser">
+  	select * from sys_user where id = #{id}
+  </select>
+  <select id="getUsers" resultType="org.study.model.SysUser">
+   	select * from sys_user
+   </select>
+   <insert id="addUser" parameterType="org.study.model.SysUser">
+   	insert into sys_user(id, name, age) values(#{id}, #{name}, #{age})
+   </insert>
+   <update id="update" parameterType="org.study.model.SysUser">
+		update sys_user 
+		<set>
+			<if test="name != null"> name=#{name}</if>
+			<if test="age != null"> ,age=#{age}</if>
+		</set>where id=#{id}
+	</update>
+	<delete id="delete" >
+		delete from sys_user where id=#{id}
+	</delete>
+</mapper>

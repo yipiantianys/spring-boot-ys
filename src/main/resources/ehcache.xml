@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ehcache xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:noNamespaceSchemaLocation="http://ehcache.org/ehcache.xsd"
+         updateCheck="false">
+         <!-- 配置缓存文件夹
+		默认：path="java.io.tmpdir"
+		 eternal="true":ture为设置缓存永不过期
+		 通过注解当进行增删改时清除缓存，这样就会是同步数据库的缓存了
+	-->
+<!--     <diskStore path="E:\\temp"/> -->
+    <defaultCache
+            eternal="false"
+            maxElementsInMemory="1000"
+            overflowToDisk="false"
+            diskPersistent="false"
+            timeToIdleSeconds="0"
+            timeToLiveSeconds="600"
+            memoryStoreEvictionPolicy="LRU" />
+ 
+    <!-- 这里的 users 缓存空间是为了下面的 demo 做准备 -->
+    <cache
+            name="users"
+            eternal="false"
+            maxElementsInMemory="100"
+            overflowToDisk="false"
+            diskPersistent="false"
+            timeToIdleSeconds="0"
+            timeToLiveSeconds="300"
+            memoryStoreEvictionPolicy="LRU" />
+
+<!-- diskStore：为缓存路径，ehcache分为内存和磁盘两级，此属性定义磁盘的缓存位置。 -->
+<!-- defaultCache：默认缓存策略，当ehcache找不到定义的缓存时，则使用这个缓存策略。只能定义一个。 -->
+<!-- name:缓存名称。 -->
+<!-- maxElementsInMemory:缓存最大数目 -->
+<!-- maxElementsOnDisk：硬盘最大缓存个数。 -->
+<!-- eternal:对象是否永久有效，一但设置了，timeout将不起作用。 -->
+<!-- overflowToDisk:是否保存到磁盘，当系统当机时 -->
+<!-- timeToIdleSeconds:设置对象在失效前的允许闲置时间（单位：秒）。仅当eternal=false对象不是永久有效时使用，可选属性，默认值是0，也就是可闲置时间无穷大。 -->
+<!-- timeToLiveSeconds:设置对象在失效前允许存活时间（单位：秒）。最大时间介于创建时间和失效时间之间。仅当eternal=false对象不是永久有效时使用，默认是0.，也就是对象存活时间无穷大。 -->
+<!-- diskPersistent：是否缓存虚拟机重启期数据 Whether the disk store persists between restarts of the Virtual Machine. The default value is false.diskSpoolBufferSizeMB：这个参数设置DiskStore（磁盘缓存）的缓存区大小。默认是30MB。每个Cache都应该有自己的一个缓冲区。 -->
+<!-- diskExpiryThreadIntervalSeconds：磁盘失效线程运行时间间隔，默认是120秒。 -->
+<!-- memoryStoreEvictionPolicy：当达到maxElementsInMemory限制时，Ehcache将会根据指定的策略去清理内存。默认策略是LRU（最近最少使用）。你可以设置为FIFO（先进先出）或是LFU（较少使用）。 -->
+<!-- clearOnFlush：内存数量最大时是否清除。 -->
+<!-- memoryStoreEvictionPolicy:可选策略有：LRU（最近最少使用，默认策略）、FIFO（先进先出）、LFU（最少访问次数）。 -->
+<!-- FIFO，first in first out，先进先出 -->
+<!-- LFU， Less Frequently Used，一直以来最少被使用的。如上面所讲，缓存的元素有一个hit属性，hit值最小的将会被清出缓存。  -->
+<!-- LRU，Least Recently Used，最近最少使用的，缓存的元素有一个时间戳，当缓存容量满了，而又需要腾出地方来缓存新的元素的时候，那么现有缓存元素中时间戳离当前时间最远的元素将被清出缓存。 -->
+
+<!-- 其他解释： -->
+<!-- name:指定当前CacheManager的名称。 -->
+<!--        dynamicConfig：boolean类型。表示是否可以动态的更新配置，默认为true。当设置为false的时候，我们在运行期通过CacheManager的Configuration来改变配置信息时将不会发生作用。使用代码进行配置时我们可以通过Configuration对象的dynamicConfig(booleandynamicConfig)方法来指定该配置。 -->
+<!--        maxBytesLocalDisk：在CacheManager级别指定能够使用的本地磁盘的最大容量。当指定了该属性后隐式的使所有Cache的overflowToDisk变为true，如需关闭则需要在对应的Cache上设置overflowToDisk为false。 -->
+<!--        maxBytesLocalHeap：在CacheManager级别指定能够使用的堆内存的最大容量。 -->
+<!--        maxBytesLocalOffHeap：在CacheManager级别指定能够使用的非堆内存的最大容量。当指定了该属性后会隐式的使所有Cache的overflowToDisk变为true，如需关闭则需在对应的Cache上设置overflowToOffHeap为false。该属性只对企业版Ehcache有用。 -->
+<!--        defaultTransactionTimeoutInSeconds: -->
+<!--        updateCheck：boolean类型，是否检查更新，默认为true。当设置为true时，CacheManager会定期的从网上去检查当前的Ehcache是否是最新的版本，如果不是，则会将比当前版本新的版本列出来。 -->
+<!--       需要注意的是当我们在CacheManager级别上指定了maxBytesLocalOffHeap时会使overflowToOffHeap的默认值变为true。也就是说该CacheManager里面所有的Cache在没有显示的指定overflowToOffHeap属性值时其值默认都是true，原本默认是false。 -->
+
+</ehcache>

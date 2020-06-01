@@ -1,0 +1,171 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>org.study</groupId>
+  <artifactId>spring-boot-ys</artifactId>
+  <packaging>jar</packaging>
+  <version>0.0.1-SNAPSHOT</version>
+  <name>spring-boot-ys Maven Webapp</name>
+  <url>http://maven.apache.org</url>
+<!--
+	Spring boot 父级依赖作用：
+	指定编码格式默认使用utf-8。
+	指定java版本默认使用1.8。
+	提供Dependency Management进行项目依赖的版本管理，如指定实际依赖的版本号（已经做版本兼容性测试）。
+	默认的资源过滤和插件管理 -->
+  <parent>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-parent</artifactId>
+    <version>2.2.5.RELEASE</version>
+  </parent>
+  <properties>
+	<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+	<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+	<java.version>1.8</java.version>
+	<druid.version>1.1.21</druid.version>
+	<fastjson.version>1.2.67</fastjson.version>
+	<mybatis-spring-boot-starter.version>2.1.2</mybatis-spring-boot-starter.version>
+	<shiro.version>1.4.0</shiro.version>
+	<!-- 指定启动类，以便利用spring-boot-maven-plugin插件，执行mvn package spring-boot:repackage命令进行打包 
+		参考：https://blog.csdn.net/pengjunlee/article/details/90639129
+	-->
+<!-- 	<start-class>org.study.Application</start-class> -->
+  </properties>
+  <dependencies>
+  	<!-- web支持: 1、web mvc; 2、restful; 3、jackjson支持; 4、aop ........ -->
+  	<dependency>
+	    <groupId>org.springframework.boot</groupId>
+	    <artifactId>spring-boot-starter-web</artifactId>
+	</dependency>
+	<!-- 排除spring boot starter 中的json处理工具，json库统一使用fastjson -->
+	<dependency>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter</artifactId>
+		<exclusions>
+			<exclusion>
+				<groupId>com.fasterxml.jackson.core</groupId>
+				<artifactId>jackson-databind</artifactId>
+			</exclusion>
+		</exclusions>
+	</dependency>
+	<!-- json处理工具 -->
+	<dependency>
+		<groupId>com.alibaba</groupId>
+		<artifactId>fastjson</artifactId>
+		<version>${fastjson.version}</version>
+	</dependency>
+	<!-- mybatis依赖 -->
+	<dependency>
+	    <groupId>org.mybatis.spring.boot</groupId>
+	    <artifactId>mybatis-spring-boot-starter</artifactId>
+	    <version>${mybatis-spring-boot-starter.version}</version>
+	</dependency>
+	<!-- druid数据库连接池 -->
+	<dependency>
+		<groupId>com.alibaba</groupId>
+		<artifactId>druid</artifactId>
+		<version>${druid.version}</version>
+	</dependency>
+	<!-- mysql 数据库驱动 -->
+	<dependency>
+		<groupId>mysql</groupId>
+		<artifactId>mysql-connector-java</artifactId>
+	</dependency>
+	<!-- actable自动创建数据表 -->
+	<dependency>
+	    <groupId>com.gitee.sunchenbin.mybatis.actable</groupId>
+	    <artifactId>mybatis-enhance-actable</artifactId>
+	    <version>1.0.8.1.RELEASE</version>
+	</dependency>
+	
+	<!-- Junit测试依赖 测试类加@SpringBootTest @RunWith(SpringRunner.class)-->
+    <dependency>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-test</artifactId>
+		<scope>test</scope>
+	</dependency> 
+	<!--热部署配置【（注意要打开Project——>build automatically】-->
+	<dependency>
+	    <groupId>org.springframework.boot</groupId>
+	    <artifactId>spring-boot-devtools</artifactId>
+	</dependency>
+	<!-- 整合JPA -->
+	<dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-data-jpa</artifactId>
+    </dependency>
+    <!--开启 cache 缓存-->
+    <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-cache</artifactId>
+    </dependency>
+    <!-- ehcache 缓存 -->
+    <dependency>
+        <groupId>net.sf.ehcache</groupId>
+        <artifactId>ehcache</artifactId>
+    </dependency>
+    <!-- 整合shiro -->
+    <!-- shiro-all包含shiro所有的包、shiro-core是核心包、shiro-web是与web整合、shiro-spring是与spring整合、
+    	shiro-ehcache是与EHCache整合、shiro-quartz是与任务调度quartz整合等等 -->
+    <dependency>
+	    <groupId>org.apache.shiro</groupId>
+	    <artifactId>shiro-core</artifactId>
+	    <version>${shiro.version}</version>
+	</dependency>
+	<dependency>
+	    <groupId>org.apache.shiro</groupId>
+	    <artifactId>shiro-web</artifactId>
+	    <version>${shiro.version}</version>
+	</dependency>
+	<dependency>
+	    <groupId>org.apache.shiro</groupId>
+	    <artifactId>shiro-ehcache</artifactId>
+	    <version>${shiro.version}</version>
+	</dependency>
+	<dependency>
+	    <groupId>org.apache.shiro</groupId>
+	    <artifactId>shiro-spring</artifactId>
+	    <version>${shiro.version}</version>
+	</dependency>
+	<!-- 配置jsp视图解析器：新增JSP和JSTL的Maven依赖配置-->
+	<dependency>
+		<groupId>org.apache.tomcat.embed</groupId>
+		<artifactId>tomcat-embed-jasper</artifactId>
+		<scope>provided</scope>
+	</dependency>
+	<dependency>
+		<groupId>javax.servlet</groupId>
+		<artifactId>jstl</artifactId>
+	</dependency> 
+	
+	
+  </dependencies>
+  <build>
+    <finalName>spring-boot-ys</finalName>
+    <plugins>
+		<plugin>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-maven-plugin</artifactId>
+		</plugin>
+		<!-- 引入java编译器插件 -->
+		<plugin>
+			<groupId>org.apache.maven.plugins</groupId>
+			<artifactId>maven-compiler-plugin</artifactId>
+			<configuration>
+				<source>1.8</source>
+				<target>1.8</target>
+				<compilerVersion>1.8</compilerVersion>
+				<encoding>UTF-8</encoding>
+			</configuration>
+		</plugin>
+		<!-- 资源文件拷贝插件 -->
+		<plugin>
+			<groupId>org.apache.maven.plugins</groupId>
+			<artifactId>maven-resources-plugin</artifactId>
+			<configuration>
+				<encoding>UTF-8</encoding>
+			</configuration>
+		</plugin>
+	</plugins>
+  </build>
+</project>
