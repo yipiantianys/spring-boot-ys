@@ -70,8 +70,7 @@
 	<dependency>
 		<groupId>mysql</groupId>
 		<artifactId>mysql-connector-java</artifactId>
-	</dependency>
-	
+	</dependency>	
 	<!-- Junit测试依赖 测试类加@SpringBootTest @RunWith(SpringRunner.class)-->
     <dependency>
 		<groupId>org.springframework.boot</groupId>
