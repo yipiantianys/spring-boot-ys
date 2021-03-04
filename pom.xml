@@ -71,12 +71,6 @@
 		<groupId>mysql</groupId>
 		<artifactId>mysql-connector-java</artifactId>
 	</dependency>
-	<!-- actable自动创建数据表 -->
-	<dependency>
-	    <groupId>com.gitee.sunchenbin.mybatis.actable</groupId>
-	    <artifactId>mybatis-enhance-actable</artifactId>
-	    <version>1.0.8.1.RELEASE</version>
-	</dependency>
 	
 	<!-- Junit测试依赖 测试类加@SpringBootTest @RunWith(SpringRunner.class)-->
     <dependency>

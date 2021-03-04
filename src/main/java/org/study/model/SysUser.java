@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -11,13 +12,10 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
-
-import com.gitee.sunchenbin.mybatis.actable.annotation.Column;
-import com.gitee.sunchenbin.mybatis.actable.annotation.Table;
-import com.gitee.sunchenbin.mybatis.actable.constants.MySqlTypeConstant;
+import javax.persistence.Table;
 /**
  * 2020-03-21
- * 1，利用actable实现表的自动生成
+ * 1，【已删除】利用actable实现表的自动生成
  * 		（1）实体上加actable的@Table注解，字段增加actable的@Column注解
  * 2020-03-29
  * 2，整合使用jpa
@@ -27,7 +25,7 @@ import com.gitee.sunchenbin.mybatis.actable.constants.MySqlTypeConstant;
  * @author ys
  *
  */
-@Entity(name = "sys_user")
+@Entity
 @Table(name = "sys_user")
 public class SysUser implements Serializable {
 
@@ -35,46 +33,45 @@ public class SysUser implements Serializable {
 
 	@Id
 	@GeneratedValue
-	@Column(name = "id", type = MySqlTypeConstant.INT, length = 11, isKey = true, isAutoIncrement = true)
+	@Column(name = "id")
 	private int id;
 
-	@Column(name = "login_id", type = MySqlTypeConstant.VARCHAR, length = 111,comment="登录名")
-	private String loginId;
+	@Column(name = "login_id")
+	private String loginId;//登录名
 	
-	@Column(name = "pwd", type = MySqlTypeConstant.VARCHAR, length = 111,comment="密码")
-	private String pwd;
+	@Column(name = "pwd")
+	private String pwd;//密码
 	
-	@Column(name = "name", type = MySqlTypeConstant.VARCHAR, length = 111,comment="用户姓名")
-	private String name;
+	@Column(name = "name" )
+	private String name;//用户姓名
 	
-	@Column(name = "salt", type = MySqlTypeConstant.VARCHAR, length = 111,comment="加密盐值")
-    private String salt;//
+	@Column(name = "salt")
+    private String salt;//加密盐值
 
-	@Column(name = "telephone", type = MySqlTypeConstant.VARCHAR, length = 111,comment="联系电话")
-	private String telephone;
+	@Column(name = "telephone")
+	private String telephone;//联系电话
 
-	@Column(name = "create_time", type = MySqlTypeConstant.DATETIME,comment="创建时间")
-	private Date createTime;
+	@Column(name = "create_time")
+	private Date createTime;//创建时间
 	
-	@Column(name = "update_time", type = MySqlTypeConstant.DATETIME,comment="更新时间")
-	private Date updateTime;
+	@Column(name = "update_time")
+	private Date updateTime;//更新时间
 
-	@Column(name = "description", type = MySqlTypeConstant.TEXT,comment="描述")
-	private String description;
+	@Column(name = "description")
+	private String description;//描述
 
-	@Column(name = "age", type = MySqlTypeConstant.BIGINT, length = 5,comment="年龄")
-	private Long age;
+	@Column(name = "age")
+	private Long age;//年龄
 
-	@Column(name = "sex", type = MySqlTypeConstant.CHAR, length = 1,comment="性别")
-	private String sex;
+	@Column(name = "sex")
+	private String sex;//性别
 
-	@Column(name = "asset", type = MySqlTypeConstant.DOUBLE, length = 5, decimalLength = 2,comment="资产")
-	private Double asset;
+	@Column(name = "asset")
+	private Double asset;//资产
 	
 	//jpa自动创建字段示例
-	@javax.persistence.Column(name = "mark",length = 1 )
-	@Column(name = "mark", type = MySqlTypeConstant.VARCHAR, length = 1, comment="删除标记")
-	private String mark;
+	@Column(name = "mark")
+	private String mark;//删除标记
 	
 	@ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "sys_user_role", joinColumns = { @JoinColumn(name = "user_id") }, inverseJoinColumns = {

@@ -195,7 +195,7 @@ public class ShiroConfiguration {
     	DefaultWebSecurityManager securityManager = new DefaultWebSecurityManager();
         //设置自定义realm.
         securityManager.setRealm(shiroRealm());
-        //【暂未实现】配置记住我 参考博客：
+        //【暂未实现】配置记住我 
         //securityManager.setRememberMeManager(rememberMeManager());
         //配置 ehcache缓存管理器 参考博客：
         securityManager.setCacheManager(ehCacheManager());//用户授权/认证信息Cache, 采用EhCache 缓存

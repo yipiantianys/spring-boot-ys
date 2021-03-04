@@ -28,6 +28,8 @@ import org.study.service.UserService;
  * 【Shiro】
  * 		AuthcController	:测试shiro需要授权的请求
  * 		LoginContoller	:测试shiro不用授权的请求
+ * -用户登录【http://localhost:8081/login/doLogin?loginId=admin&password=123456】
+ * -注册用户【（http://localhost:8081/login/register?loginId=admin&password=123456】
  * @author ys
  *
  */
@@ -71,7 +73,7 @@ public class LoginContoller {
     }
 
     /**
-     * 用户登录（http://localhost:8081/login/doLogin?loginId=admin&password=123456）
+     * -用户登录【http://localhost:8081/login/doLogin?loginId=admin&password=123456】
      * @param loginId
      * @param password
      * @return
@@ -127,7 +129,7 @@ public class LoginContoller {
     }
 
     /**
-     * 注册用户（http://localhost:8081/login/register?loginId=admin&password=123456）
+     * -注册用户【（http://localhost:8081/login/register?loginId=admin&password=123456】
      * @param loginId
      * @param password
      * @return

@@ -6,14 +6,15 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cache.annotation.EnableCaching;
 
 /**
+ * -辅助信息记录：
+ * -用户登录【http://localhost:8081/login/doLogin?loginId=admin&password=123456】
+ * -注册用户【（http://localhost:8081/login/register?loginId=admin&password=123456】
+ * =================================历史更新记录==================================================================
  * 2020-03-21【 SpringBoot+Mybatis+mysql+druid】
- * 1，mapper的xml和注解两种实现、javaConfig注解配置、actable自动生成表结构
+ * 1，mapper的xml和注解两种实现、javaConfig注解配置
  * 	（1）同时支持mapper接口方法的xml配置和注解两个种实现方式
- * 	（2）使用了@Configration注解配置，通过配置actable，支持mybatis的自动创建表和字段
- * 		配置文件位置：
- * 			/spring-boot-ys/src/main/java/org/study/config/MybatisTableConfig.java
- * 			/spring-boot-ys/src/main/java/org/study/config/MyBatisMapperScannerConfig.java
- *  （3）利用actable实现表的自动生成时，实体类上加actable的@Table注解，字段增加actable的@Column注解
+ * 	（2）数据库连接池可以在application.yml配置，也可使用@Configration注解配置
+ *  
  * 2020-03-29【 SpringBoot+Mybatis+mysql+druid+jpa】
  * 2，整合使用jpa
  * 		（1）一定要在实体类和主键上分别加@Entity和@Id注解,属于jpa专用，且@Entity中要指明数据表名，否则根据类名识别
